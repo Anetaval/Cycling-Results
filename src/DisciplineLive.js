@@ -1,46 +1,15 @@
 import React, { useEffect, useState } from "react";
 import { useParams, useNavigate } from "react-router-dom";
-import { getFlagUrl } from './Utils/getFlagUrl'; // přizpůsob cestu podle struktury
+import { getFlagUrl } from './Utils/getFlagUrl';
 
 const API_KEY = "AIzaSyAth7L9k8Xmpl9e5GSfeW68N1ThaSp0WAs";
-
-const [eventData, setEventData] = useState(null);
-
-useEffect(() => {
-  fetch(process.env.PUBLIC_URL + `/events/list.json`)
-    .then((response) => response.json())
-    .then((data) => {
-      const event = data.find((e) => e.file.replace('.json', '') === eventName);
-      if (event) {
-        setEventDisplayName(event.name);
-        fetch(process.env.PUBLIC_URL + `/events/${event.file}`)
-          .then((response) => response.json())
-          .then((jsonData) => {
-            setEventData(jsonData);
-
-            const discipline = jsonData.disciplines
-              .flatMap((day) => day.events)
-              .find((d) => d.name.replace(/\s+/g, "-").replace(/\//g, "-").toLowerCase() === disciplineName);
-
-            if (discipline) {
-              setSheetName(discipline.sheetName);
-              setRowRange(discipline.rowRange);
-              setSelectedColumns(discipline.columns);
-              setRelatedEvents(discipline.relatedEvents || []);
-              setDisplayName(discipline.displayName || discipline.name);
-              setBoldRows(discipline.boldRows || []);
-            }
-          });
-      }
-    })
-    .catch((error) => console.error("❌ Chyba při načítání JSON:", error));
-}, [eventName, disciplineName]);
-
 
 const DisciplineLive = () => {
   const { eventName, disciplineName } = useParams();
   const navigate = useNavigate();
 
+  // 📦 Stavy
+  const [eventData, setEventData] = useState(null);
   const [eventDisplayName, setEventDisplayName] = useState("");
   const [displayName, setDisplayName] = useState("");
   const [data, setData] = useState([]);
@@ -51,17 +20,47 @@ const DisciplineLive = () => {
   const [relatedEvents, setRelatedEvents] = useState([]);
   const [boldRows, setBoldRows] = useState([]);
 
-  const omniumDisciplines = [
-    "Omnium ME", "Omnium WE", "Omnium MU19", "Omnium WU19", "Omnium MJ", "Omnium WJ"
-  ];
+  // ✅ Speciální disciplíny
+  const omniumDisciplines = ["Omnium ME", "Omnium WE", "Omnium MU19", "Omnium WU19", "Omnium MJ", "Omnium WJ"];
   const isOmnium = omniumDisciplines.includes(displayName);
   const isOmniumMain = isOmnium && displayName === eventDisplayName;
 
   const madisonDisciplines = ["Madison ME", "Madison WE", "Madison MJ", "Madison WJ"];
   const isMadison = madisonDisciplines.includes(sheetName);
 
- 
+  // ✅ Načtení eventu a disciplíny
+  useEffect(() => {
+    fetch(process.env.PUBLIC_URL + `/events/list.json`)
+      .then((response) => response.json())
+      .then((data) => {
+        const event = data.find((e) => e.file.replace('.json', '') === eventName);
+        if (event) {
+          setEventDisplayName(event.name);
+          setGoogleSheetsId(event.googleSheetsId);
+          fetch(process.env.PUBLIC_URL + `/events/${event.file}`)
+            .then((response) => response.json())
+            .then((jsonData) => {
+              setEventData(jsonData);
 
+              const discipline = jsonData.disciplines
+                .flatMap((day) => day.events)
+                .find((d) => d.name.replace(/\s+/g, "-").replace(/\//g, "-").toLowerCase() === disciplineName);
+
+              if (discipline) {
+                setSheetName(discipline.sheetName);
+                setRowRange(discipline.rowRange);
+                setSelectedColumns(discipline.columns);
+                setRelatedEvents(discipline.relatedEvents || []);
+                setDisplayName(discipline.displayName || discipline.name);
+                setBoldRows(discipline.boldRows || []);
+              }
+            });
+        }
+      })
+      .catch((error) => console.error("❌ Chyba při načítání JSON:", error));
+  }, [eventName, disciplineName]);
+
+  // ✅ Načtení dat z Google Sheets
   useEffect(() => {
     if (!googleSheetsId || !sheetName || rowRange[0] === 0 || selectedColumns.length === 0) return;
     const fetchDataFromSheets = async () => {
@@ -89,6 +88,7 @@ const DisciplineLive = () => {
 
   let currentHeaderRow = [];
 
+  // ✅ Render
   return (
     <div className="p-4 discipline-container">
       <button onClick={() => navigate(`/event/${eventName}`)} className="back-button">
@@ -124,13 +124,12 @@ const DisciplineLive = () => {
                 <td></td>
               </tr>
             )}
-
             {data.map((row, i) => {
               const rowNumber = rowRange[0] + i + 1;
               const isBold = boldRows.includes(rowNumber);
               const isPairEnd = isMadison && (i >= 1) && ((i - 1) % 2 === 1);
-
               const isSpacerRow = row.every(cell => (cell || "").trim() === "");
+
               if (isSpacerRow) return <tr key={`spacer-${i}`} className="spacer-row"><td colSpan={selectedColumns.length}></td></tr>;
 
               const hasFinal = row.some(cell => typeof cell === "string" && cell.trim().toLowerCase().includes("final"));
@@ -155,9 +154,7 @@ const DisciplineLive = () => {
                     {row.map((cell, j) => {
                       const headerCell = currentHeaderRow[j];
                       const isCountryCol = headerCell && ["country", "nat", "nationality"].includes(headerCell.trim().toLowerCase());
-                      return isCountryCol ? (
-                        <td key={j} className="text-center">{getFlagUrl((cell || "").trim().toUpperCase()) && <img src={getFlagUrl((cell || "").trim().toUpperCase())} alt="" className="flag-icon" />}</td>
-                      ) : <td key={j}>{cell}</td>;
+                      return isCountryCol ? <td key={j}><img src={getFlagUrl(cell)} alt={cell} className="flag-icon" /></td> : <td key={j}>{cell}</td>;
                     })}
                   </tr>
                 </React.Fragment>
