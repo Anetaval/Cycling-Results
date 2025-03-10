@@ -1,20 +1,17 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { useParams, useNavigate } from "react-router-dom";
-
-// 🔥 Dynamický import JSON souboru
-const loadEventData = (eventName) => {
-  try {
-    return require(`./events/${eventName.replace(/\s+/g, "-").toLowerCase()}.json`);
-  } catch (error) {
-    console.error("❌ Event data not found:", eventName);
-    return null;
-  }
-};
 
 const EventDetail = () => {
   const { eventName } = useParams();
   const navigate = useNavigate();
-  const eventData = loadEventData(eventName);
+  const [eventData, setEventData] = useState(null);
+
+  useEffect(() => {
+    fetch(process.env.PUBLIC_URL + `/events/${eventName}.json`)
+      .then((response) => response.json())
+      .then((data) => setEventData(data))
+      .catch((error) => console.error("❌ Error loading event data:", error));
+  }, [eventName]);
 
   if (!eventData) {
     return (
@@ -58,10 +55,9 @@ const EventDetail = () => {
           {/* 📌 Seznam disciplín */}
           <div id={`day-${dayIndex}`} className="hidden disciplines-list">
             {day.events
-              .filter(event => !event.hidden)
+              .filter((event) => !event.hidden)
               .map((event, eventIndex) => (
                 <div key={eventIndex} className="discipline-item">
-                  {/* 🏁 Klikací název disciplíny → vede na Live Results */}
                   <span
                     className="discipline-name text-blue-500 cursor-pointer underline"
                     onClick={() => navigate(`/event/${eventName}/discipline/${event.name.replace(/\s+/g, "-").toLowerCase()}`)}
@@ -69,7 +65,6 @@ const EventDetail = () => {
                     {event.listDisplayName || event.name}
                   </span>
 
-                  {/* 📄 PDF tlačítka pro StartList & Results */}
                   <div className="discipline-links">
                     {event.startList && (
                       <a href={event.startList} target="_blank" rel="noopener noreferrer" className="discipline-link">

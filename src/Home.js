@@ -1,22 +1,25 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
-
-const eventsByYear = {
-  2025: [
-    { name: "Mistrovství Evropy", date: "08/2025", hidden: false },
-    { name: "Mistrovství ČR", date: "06/2025", hidden: false },
-    { name: "GP Framar Praha", date: "05/2025", hidden: false }
-  ],
-  2024: [
-    { name: "GP Brno Sprint", date: "06/2024", hidden: false },
-  ],
-};
 
 const Home = () => {
   const navigate = useNavigate();
-  const [selectedYear, setSelectedYear] = useState(
-    Math.max(...Object.keys(eventsByYear).map(Number))
-  );
+  const [events, setEvents] = useState([]);
+  const [selectedYear, setSelectedYear] = useState(null);
+
+  // ✅ Načti seznam eventů z list.json
+  useEffect(() => {
+    fetch(process.env.PUBLIC_URL + "/events/list.json")
+      .then((response) => response.json())
+      .then((data) => {
+        setEvents(data);
+        // Vyber nejnovější rok automaticky
+        const years = [...new Set(data.map((event) => event.year))].sort((a, b) => b - a);
+        setSelectedYear(years[0]);
+      })
+      .catch((error) => console.error("Error loading event list:", error));
+  }, []);
+
+  const uniqueYears = [...new Set(events.map((event) => event.year))].sort((a, b) => b - a);
 
   return (
     <div className="home-container">
@@ -25,28 +28,26 @@ const Home = () => {
 
       {/* 📅 Lišta s roky */}
       <div className="year-buttons">
-        {Object.keys(eventsByYear)
-          .sort((a, b) => b - a)
-          .map((year) => (
-            <button
-              key={year}
-              onClick={() => setSelectedYear(Number(year))}
-              className="button"
-            >
-              {year}
-            </button>
-          ))}
+        {uniqueYears.map((year) => (
+          <button
+            key={year}
+            onClick={() => setSelectedYear(year)}
+            className={`button ${year === selectedYear ? "active" : ""}`}
+          >
+            {year}
+          </button>
+        ))}
       </div>
 
       {/* 📅 Seznam eventů */}
       <div className="events-container">
-        {eventsByYear[selectedYear]
-          .filter((event) => !event.hidden)
+        {events
+          .filter((event) => event.year === selectedYear)
           .map((event, index) => (
             <div
               key={index}
               className="event-card"
-              onClick={() => navigate(`/event/${event.name.replace(/\s+/g, "-").toLowerCase()}`)}
+              onClick={() => navigate(`/event/${event.file.replace('.json', '')}`)}
             >
               <span className="event-name">{event.name}</span> - {event.date}
             </div>
