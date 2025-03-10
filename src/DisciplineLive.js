@@ -60,36 +60,7 @@ const DisciplineLive = () => {
   const madisonDisciplines = ["Madison ME", "Madison WE", "Madison MJ", "Madison WJ"];
   const isMadison = madisonDisciplines.includes(sheetName);
 
-  useEffect(() => {
-    const fetchEventData = async () => {
-      try {
-        const event = eventsData.find(
-          (e) => e.name.replace(/\s+/g, "-").toLowerCase() === eventName
-        );
-        if (event) {
-          setEventDisplayName(event.name);
-          setGoogleSheetsId(event.googleSheetsId);
-
-          const discipline = event.disciplines.flatMap((day) => day.events).find((d) => {
-            const formattedName = d.name.replace(/\s+/g, "-").replace(/\//g, "-").toLowerCase();
-            return formattedName === disciplineName;
-          });
-
-          if (discipline) {
-            setSheetName(discipline.sheetName);
-            setRowRange(discipline.rowRange);
-            setSelectedColumns(discipline.columns);
-            setRelatedEvents(discipline.relatedEvents || []);
-            setDisplayName(discipline.displayName || discipline.name);
-            setBoldRows(discipline.boldRows || []);
-          }
-        }
-      } catch (error) {
-        console.error("❌ Chyba při načítání JSON:", error);
-      }
-    };
-    fetchEventData();
-  }, [eventName, disciplineName]);
+ 
 
   useEffect(() => {
     if (!googleSheetsId || !sheetName || rowRange[0] === 0 || selectedColumns.length === 0) return;

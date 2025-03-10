@@ -1,0 +1,13 @@
+{
+  "files": {
+    "main.css": "/Cycling-Results/static/css/main.3c7325b3.css",
+    "main.js": "/Cycling-Results/static/js/main.4eec4ae4.js",
+    "index.html": "/Cycling-Results/index.html",
+    "main.3c7325b3.css.map": "/Cycling-Results/static/css/main.3c7325b3.css.map",
+    "main.4eec4ae4.js.map": "/Cycling-Results/static/js/main.4eec4ae4.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.3c7325b3.css",
+    "static/js/main.4eec4ae4.js"
+  ]
+}
