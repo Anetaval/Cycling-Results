@@ -4,8 +4,38 @@ import { getFlagUrl } from './Utils/getFlagUrl'; // přizpůsob cestu podle stru
 
 const API_KEY = "AIzaSyAth7L9k8Xmpl9e5GSfeW68N1ThaSp0WAs";
 
-const eventFiles = require.context("./events", false, /\.json$/);
-const eventsData = eventFiles.keys().map((key) => eventFiles(key));
+const [eventData, setEventData] = useState(null);
+
+useEffect(() => {
+  fetch(process.env.PUBLIC_URL + `/events/list.json`)
+    .then((response) => response.json())
+    .then((data) => {
+      const event = data.find((e) => e.file.replace('.json', '') === eventName);
+      if (event) {
+        setEventDisplayName(event.name);
+        fetch(process.env.PUBLIC_URL + `/events/${event.file}`)
+          .then((response) => response.json())
+          .then((jsonData) => {
+            setEventData(jsonData);
+
+            const discipline = jsonData.disciplines
+              .flatMap((day) => day.events)
+              .find((d) => d.name.replace(/\s+/g, "-").replace(/\//g, "-").toLowerCase() === disciplineName);
+
+            if (discipline) {
+              setSheetName(discipline.sheetName);
+              setRowRange(discipline.rowRange);
+              setSelectedColumns(discipline.columns);
+              setRelatedEvents(discipline.relatedEvents || []);
+              setDisplayName(discipline.displayName || discipline.name);
+              setBoldRows(discipline.boldRows || []);
+            }
+          });
+      }
+    })
+    .catch((error) => console.error("❌ Chyba při načítání JSON:", error));
+}, [eventName, disciplineName]);
+
 
 const DisciplineLive = () => {
   const { eventName, disciplineName } = useParams();
