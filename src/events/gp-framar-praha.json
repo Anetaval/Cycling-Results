@@ -1,0 +1,46 @@
+{
+    "name": "GP Framar",
+    "date": "07/2025",
+    "schedule": "URL NA PDF PROGRAMU",
+    "pdfs": [
+      { "name": "PDF", "url": "URL na PDF dokumenty" }
+    ],
+    
+    "disciplines": [
+      {
+        "day": 1,
+        "date": "Datum prvního dne",
+        "events": [
+          {
+            "name": "Sprint ME Qualification",
+            "startList": "URL NA STARTLIST PDF",
+            "results": "URL NA RESULTS PDF"
+          },
+          {
+            "name": "Keirin WE Round 1",
+            "startList": "URL na PDF",
+            "results": "URL na PDF"
+          }
+    
+        ]
+        
+      },
+      {
+        "day": 2,
+        "date": "Datum druhého dne",
+        "events": [
+            {
+                "name": "Omnium ME",
+                "startList": "URL NA STARTLIST PDF",
+            "results": "URL NA RESULTS PDF"
+            },
+            {
+                "name": "Madison WE",
+                "startList": "URL NA STARTLIST PDF",
+            "results": "URL NA RESULTS PDF"
+            }
+        ]
+      }
+    ]
+  }
+  
