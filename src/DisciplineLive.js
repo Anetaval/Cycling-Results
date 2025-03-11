@@ -63,13 +63,22 @@ const DisciplineLive = () => {
   // ✅ Načtení dat z Google Sheets
   useEffect(() => {
     if (!googleSheetsId || !sheetName || rowRange[0] === 0 || selectedColumns.length === 0) return;
+    console.log("📊 Google Sheets ID:", googleSheetsId);
+console.log("📊 Sheet name:", sheetName);
+console.log("📊 Row range:", rowRange);
+console.log("📊 Selected columns:", selectedColumns);
+
     const fetchDataFromSheets = async () => {
       const range = `${sheetName}!A${rowRange[0]}:Z${rowRange[1]}`;
       const url = `https://sheets.googleapis.com/v4/spreadsheets/${googleSheetsId}/values/${range}?key=${API_KEY}`;
+    
+      console.log("✅ URL pro Google Sheets:", url);
+
 
       try {
         const response = await fetch(url);
         const data = await response.json();
+        console.log("✅ Data z Google Sheets:", json); // Výsledek API
         if (!data.values) return;
 
         const columnIndexes = selectedColumns.map((col) => col.charCodeAt(0) - 65);
