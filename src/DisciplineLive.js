@@ -2,7 +2,8 @@ import React, { useEffect, useState } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import { getFlagUrl } from './Utils/getFlagUrl';
 
-const API_KEY = "AIzaSyAth7L9k8Xmpl9e5GSfeW68N1ThaSp0WAs";
+const API_KEY = process.env.REACT_APP_GOOGLE_API_KEY;
+
 
 const DisciplineLive = () => {
   const { eventName, disciplineName } = useParams();
@@ -78,7 +79,7 @@ console.log("📊 Selected columns:", selectedColumns);
       try {
         const response = await fetch(url);
         const data = await response.json();
-        console.log("✅ Data z Google Sheets:", json); // Výsledek API
+        console.log("✅ Data z Google Sheets:", data); // Výsledek API
         if (!data.values) return;
 
         const columnIndexes = selectedColumns.map((col) => col.charCodeAt(0) - 65);
