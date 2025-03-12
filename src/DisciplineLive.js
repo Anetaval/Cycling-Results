@@ -1,9 +1,10 @@
 import React, { useEffect, useState } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import { getFlagUrl } from './Utils/getFlagUrl';
+import eventList from './data/list.json';
 
 const API_KEY = process.env.REACT_APP_GOOGLE_API_KEY;
-
+console.log("✅ API Key in build:", API_KEY);
 
 const DisciplineLive = () => {
   const { eventName, disciplineName } = useParams();
@@ -21,65 +22,54 @@ const DisciplineLive = () => {
   const [relatedEvents, setRelatedEvents] = useState([]);
   const [boldRows, setBoldRows] = useState([]);
 
-  // ✅ Speciální disciplíny
-  const omniumDisciplines = ["Omnium ME", "Omnium WE", "Omnium MU19", "Omnium WU19", "Omnium MJ", "Omnium WJ"];
-  const isOmnium = omniumDisciplines.includes(displayName);
-  const isOmniumMain = isOmnium && displayName === eventDisplayName;
-
-  const madisonDisciplines = ["Madison ME", "Madison WE", "Madison MJ", "Madison WJ"];
-  const isMadison = madisonDisciplines.includes(sheetName);
-
   // ✅ Načtení eventu a disciplíny
   useEffect(() => {
-    fetch(process.env.PUBLIC_URL + `/events/list.json`)
-      .then((response) => response.json())
-      .then((data) => {
-        const event = data.find((e) => e.file.replace('.json', '') === eventName);
-        if (event) {
-          setEventDisplayName(event.name);
-          setGoogleSheetsId(event.googleSheetsId);
-          fetch(process.env.PUBLIC_URL + `/events/${event.file}`)
-            .then((response) => response.json())
-            .then((jsonData) => {
-              setEventData(jsonData);
+    const event = eventList.find((e) => e.file.replace('.json', '') === eventName);
+    if (event) {
+      setEventDisplayName(event.name);
+      setGoogleSheetsId(event.googleSheetsId);
+      import(`./data/${event.file}`)
+        .then((module) => {
+          const jsonData = module.default;
+          setEventData(jsonData);
 
-              const discipline = jsonData.disciplines
-                .flatMap((day) => day.events)
-                .find((d) => d.name.replace(/\s+/g, "-").replace(/\//g, "-").toLowerCase() === disciplineName);
+          const discipline = jsonData.disciplines
+            .flatMap((day) => day.events)
+            .find((d) => d.name.replace(/\s+/g, "-").replace(/\//g, "-").toLowerCase() === disciplineName);
 
-              if (discipline) {
-                setSheetName(discipline.sheetName);
-                setRowRange(discipline.rowRange);
-                setSelectedColumns(discipline.columns);
-                setRelatedEvents(discipline.relatedEvents || []);
-                setDisplayName(discipline.displayName || discipline.name);
-                setBoldRows(discipline.boldRows || []);
-              }
-            });
-        }
-      })
-      .catch((error) => console.error("❌ Chyba při načítání JSON:", error));
+          if (discipline) {
+            setSheetName(discipline.sheetName);
+            setRowRange(discipline.rowRange);
+            setSelectedColumns(discipline.columns);
+            setRelatedEvents(discipline.relatedEvents || []);
+            setDisplayName(discipline.displayName || discipline.name);
+            setBoldRows(discipline.boldRows || []);
+          }
+        })
+        .catch((error) => console.error("❌ Error loading event JSON:", error));
+    } else {
+      console.error("❌ Event not found in list.json");
+    }
   }, [eventName, disciplineName]);
 
   // ✅ Načtení dat z Google Sheets
   useEffect(() => {
     if (!googleSheetsId || !sheetName || rowRange[0] === 0 || selectedColumns.length === 0) return;
     console.log("📊 Google Sheets ID:", googleSheetsId);
-console.log("📊 Sheet name:", sheetName);
-console.log("📊 Row range:", rowRange);
-console.log("📊 Selected columns:", selectedColumns);
+    console.log("📊 Sheet name:", sheetName);
+    console.log("📊 Row range:", rowRange);
+    console.log("📊 Selected columns:", selectedColumns);
 
     const fetchDataFromSheets = async () => {
       const range = `${sheetName}!A${rowRange[0]}:Z${rowRange[1]}`;
       const url = `https://sheets.googleapis.com/v4/spreadsheets/${googleSheetsId}/values/${range}?key=${API_KEY}`;
-    
-      console.log("✅ URL pro Google Sheets:", url);
 
+      console.log("✅ URL pro Google Sheets:", url);
 
       try {
         const response = await fetch(url);
         const data = await response.json();
-        console.log("✅ Data z Google Sheets:", data); // Výsledek API
+        console.log("✅ Data z Google Sheets:", data);
         if (!data.values) return;
 
         const columnIndexes = selectedColumns.map((col) => col.charCodeAt(0) - 65);

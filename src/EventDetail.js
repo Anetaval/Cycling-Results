@@ -1,16 +1,23 @@
 import React, { useEffect, useState } from "react";
 import { useParams, useNavigate } from "react-router-dom";
+import eventList from './data/list.json';
 
 const EventDetail = () => {
   const { eventName } = useParams();
   const navigate = useNavigate();
   const [eventData, setEventData] = useState(null);
 
+  // ✅ Použijeme importovaný list.json pro vyhledání správného eventu
   useEffect(() => {
-    fetch(process.env.PUBLIC_URL + `/events/${eventName}.json`)
-      .then((response) => response.json())
-      .then((data) => setEventData(data))
-      .catch((error) => console.error("❌ Error loading event data:", error));
+    const eventFile = eventName + ".json";
+    const event = eventList.find((e) => e.file === eventFile);
+    if (event) {
+      import(`./data/${event.file}`)
+        .then((module) => setEventData(module.default))
+        .catch((error) => console.error("❌ Error loading event data:", error));
+    } else {
+      console.error("❌ Event not found in list.json");
+    }
   }, [eventName]);
 
   if (!eventData) {

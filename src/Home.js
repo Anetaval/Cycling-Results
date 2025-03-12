@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
+import eventList from './data/list.json';
 
 const Home = () => {
   const navigate = useNavigate();
@@ -8,16 +9,12 @@ const Home = () => {
 
   // ✅ Načti seznam eventů z list.json
   useEffect(() => {
-    fetch(process.env.PUBLIC_URL + "/events/list.json")
-      .then((response) => response.json())
-      .then((data) => {
-        setEvents(data);
-        // Vyber nejnovější rok automaticky
-        const years = [...new Set(data.map((event) => event.year))].sort((a, b) => b - a);
-        setSelectedYear(years[0]);
-      })
-      .catch((error) => console.error("Error loading event list:", error));
-  }, []);
+    const data = eventList;
+    setEvents(data);
+    // Vyber nejnovější rok automaticky
+    const years = [...new Set(data.map((event) => event.year))].sort((a, b) => b - a);
+    setSelectedYear(years[0]);
+  }, []); // KONEC useEffect, žádný catch!
 
   const uniqueYears = [...new Set(events.map((event) => event.year))].sort((a, b) => b - a);
 
