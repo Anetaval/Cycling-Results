@@ -1,0 +1,403 @@
+/* 🔹 Globální nastavení */
+body {
+    font-family: Arial, sans-serif;
+    background-color: #ffffff;
+    color: #000000;
+    margin: 0;
+    padding: 0;
+  }
+  
+  /* 🔹 Horní lišta */
+  .header {
+    background-color: #414141;  /* šedá barva */
+    color: white;
+    text-align: center;
+    font-size: 28px;
+    font-weight: bold;
+    padding: 20px 0;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  }
+  
+  /* 🔹 Spodní lišta */
+  .footer {
+    background-color: #ffc15e;
+    color: rgb(0, 0, 0);
+    text-align: center;
+    padding: 15px 0;
+    font-size: 18px;
+    position: absolute;
+    width: 100%;
+    bottom: 0;
+  }
+  
+  /* 🔹 Tlačítka */
+  .button {
+    background-color: #cbcbcb;
+    color: hsl(0, 0%, 0%);
+    border: none;
+    padding: 12px 24px;
+    margin: 10px;
+    font-size: 18px;
+    font-weight: bold;
+    cursor: pointer;
+    border-radius: 8px;
+    transition: 0.3s;
+  }
+  
+  .button:hover {
+    background-color: #ffc15e;
+  }
+  
+  /* 🔹 Seznam eventů */
+  .events-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 20px;
+  }
+  
+  .event-card {
+    background-color: white;
+    width: 80%;
+    max-width: 600px;
+    padding: 15px;
+    margin: 10px 0;
+    border-radius: 8px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    cursor: pointer;
+    transition: 0.3s;
+  }
+  
+  .event-card:hover {
+    background-color: #fff5e4;
+  }
+  
+  /* 🔙 Tlačítko zpět */
+.back-button {
+    background-color: #414141;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    font-size: 16px;
+    font-weight: bold;
+    cursor: pointer;
+    border-radius: 8px;
+    transition: 0.3s;
+    margin-bottom: 20px;
+  }
+  
+  .back-button:hover {
+    background-color: #ffc15e;
+  }
+  
+  /* 🏆 Název eventu */
+  .event-title {
+    font-size: 35px;
+    font-weight: bold;
+    text-align: center;
+    margin-bottom: 10px;
+  }
+  
+  /* 📅 Datum eventu */
+  .event-date {
+    font-size: 20px;
+    text-align: center;
+    color: #555;
+    margin-bottom: 20px;
+  }
+  
+  /* 📄 Event Schedule */
+  .event-schedule {
+    display: block;
+    text-align: center;
+    font-size: 18px;
+    font-weight: bold;
+    color: #154a82;
+    text-decoration: none;
+    margin-bottom: 20px;
+  }
+  
+  .event-schedule:hover {
+    text-decoration: underline;
+  }
+  
+  /* 📌 Dny eventu */
+  .event-day {
+    margin-top: 30px;
+    
+  }
+  
+  .day-title {
+    font-size: 20px;
+    font-weight: bold;
+    text-decoration: underline;
+    color: #444;
+    margin-bottom: 10px;
+    padding: 5px 5px;
+  }
+  
+  /* 📌 Seznam disciplín */
+  .disciplines-list {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+  
+  .discipline-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: white;
+    padding: 12px 25px;
+    border-radius: 8px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  }
+  
+  .discipline-name {
+    font-size: 18px;
+    font-weight: bold;
+  }
+  
+  .discipline-links {
+    display: flex;
+    gap: 15px;
+  }
+  
+  .discipline-link {
+    font-size: 16px;
+    font-weight: bold;
+    color: #154a82;
+    text-decoration: none;
+  }
+  
+  .discipline-link:hover {
+    text-decoration: underline;
+  }
+  /* 🔙 Tlačítko zpět */
+.back-button {
+    background-color: #414141;
+    color: white;
+    border: none;
+    padding: 10px 18px;
+    font-size: 16px;
+    font-weight: bold;
+    cursor: pointer;
+    border-radius: 8px;
+    transition: 0.3s;
+    margin-bottom: 20px;
+  }
+  
+  .back-button:hover {
+    background-color: #cbcbcb;
+  }
+  
+  /* 🏆 Název disciplíny */
+  .discipline-title {
+    font-size: 30px;
+    font-weight: bold;
+    text-align: center;
+    margin-bottom: 5px;
+  }
+  
+  /* 📊 Podnadpis „Results“ */
+  .discipline-subtitle {
+    font-size: 20px;
+    text-align: center;
+    color: #666;
+    margin-bottom: 20px;
+  }
+  
+  /* 🔀 Přepínače mezi jednotlivými částmi závodu */
+  .related-events {
+    display: flex;
+    justify-content: center;
+    gap: 8px;
+    margin-bottom: 20px;
+  }
+  
+  .event-switch-button {
+    background-color: #e0e0e0;
+    color: #333;
+    border: none;
+    padding: 8px 14px;
+    font-size: 14px;
+    cursor: pointer;
+    border-radius: 6px;
+    transition: 0.3s;
+  }
+  
+  .event-switch-button:hover {
+    background-color: #cfcfcf;
+  }
+  
+  /* 📊 Tabulka výsledků */
+  /* 📊 Tabulka výsledků – upravená */
+.discipline-table {
+    width: 90%;  /* ✅ Zmenší tabulku a přidá okraje */
+    max-width: 1200px; /* ✅ Maximální šířka tabulky */
+    margin: 0 auto; /* ✅ Zarovnání na střed */
+    border-collapse: collapse;
+    margin-top: 15px;
+  }
+  
+  /* 📊 Sloupce – přizpůsobení šířky */
+  .discipline-table th:nth-child(1),  /* Rnk */
+  .discipline-table td:nth-child(1) {
+    width: 50px; /* ✅ Pevná šířka pro Rank */
+  }
+  
+  .discipline-table th:nth-child(2),  /* Bib */
+  .discipline-table td:nth-child(2) {
+    width: 70px; /* ✅ Pevná šířka pro startovní číslo */
+  }
+
+
+
+  .discipline-table th:nth-child(5),  /* Country */
+  .discipline-table td:nth-child(5) {
+    width: 80px; /* ✅ Pevná šířka pro Country */
+  }
+
+  /* 📌 První sloupec v tabulce bude vždy tučný */
+.discipline-table th:first-child,
+.discipline-table td:first-child {
+  font-weight: bold;
+}
+
+  
+  /* 📊 Ostatní sloupce se přizpůsobí automaticky */
+  
+  
+  .discipline-table th,
+  .discipline-table td {
+    border: 1px solid #ddd;
+    padding: 10px;
+    text-align: center;
+  }
+  
+  .discipline-table th {
+    background-color: #313131;
+    color: rgb(255, 255, 255);
+    font-weight: bold;
+  }
+  
+  /* 🔹 Tučné řádky v tabulce */
+  .bold-row {
+    font-weight: bold;
+    background-color: #f8f9fa;
+  }
+  
+  /* ❌ Zpráva o nedostatku dat */
+  .no-data {
+    text-align: center;
+    color: red;
+    font-size: 18px;
+    margin-top: 20px;
+  }
+  
+  /* 🔹 Vizuální mezery pro prázdné řádky */
+.spacer-row td {
+    height: 12px; /* ✅ Nastav menší výšku pro běžné mezery */
+    border: none; /* ✅ Odstraníme ohraničení */
+    background: transparent; /* ✅ Žádné pozadí */
+  }
+  
+  /* 🔹 Větší mezera, pokud jsou prázdné řádky po sobě */
+  .spacer-row + .spacer-row td {
+    height: 3px; /* ✅ Větší mezera, pokud následuje další prázdný řádek */
+  }
+  
+  /* 🔹 Zvýraznění slova WINNER */
+.winner-cell {
+    color: #26a526; /* ✅ Zelený text */
+    font-weight: bold; /* ✅ Tučné písmo */
+    text-transform: uppercase; /* ✅ Velká písmena */
+    text-align: center;
+  }
+  /* 🔳 Lišty "Final for Bronze/Gold" */
+
+  
+  
+  /* 🏁 Hlavičkový řádek s "Rnk, Bib, Last Name..." */
+  thead .header-row {
+    background-color: #333;
+    color: white;
+    font-weight: bold;
+  }
+  .final-header-row {
+    background-color: #333;
+    text-align: center;
+}
+
+.final-header-cell {
+    color: white;
+    font-size: 18px;
+    font-weight: bold;
+    text-align: center;
+    padding: 12px;
+    text-transform: uppercase;
+    width: 100%;
+    display: table-cell;
+}
+
+
+/* ✅ Tabulka pro Omnium se roztáhne přes celý prostor */
+.omnium-table {
+    width: 100% !important;
+    max-width: none !important;
+    table-layout: auto !important; /* automatické rozložení sloupců */
+    word-wrap: break-word; /* zalamování slov */
+    white-space: normal; /* povolení zalomení textu */
+}
+
+/* ✅ Povolení zalamování slov ve všech buňkách Omnium */
+.omnium-table th, 
+.omnium-table td {
+    white-space: normal;
+}
+
+/* ✅ Specifická šířka pro sloupce Omnium Points */
+.omnium-table th:nth-child(6),
+.omnium-table th:nth-child(7),
+.omnium-table th:nth-child(8),
+.omnium-table th:nth-child(9),
+.omnium-table th:nth-child(10),
+.omnium-table th:nth-child(11),
+.omnium-table th:nth-child(12) {
+    width: 70px; /* Můžeš upravit dle potřeby */
+}
+
+/* ✅ Druhý šedý řádek nadpisů pro Omnium */
+.omnium-second-header td {
+    text-align: center;
+    font-weight: bold;
+    background: #333; /* Tmavší pozadí, ať to ladí s hlavičkou */
+    color: white;
+    padding: 10px;
+    border: 1px solid #ddd;
+}
+
+/* ✅ Aby hlavičky měly správné orámování jako zbytek */
+.omnium-second-header td:first-child {
+    border-left: 1px solid #ddd;
+}
+.omnium-second-header td:last-child {
+    border-right: 1px solid #ddd;
+}
+
+/* Tlustá čára pro ukončení dvojice v Madisonu */
+.madison-pair-border {
+    border-bottom: 3px solid black;
+  }
+  
+  /* 🏳️‍🌈 Vlajky států */
+.flag-icon {
+    border: 0.5px solid black; /* Tenký černý rámeček */
+    border-radius: 0px; /* Jemné zaoblení rohů */
+    width: 20px; /* Šířka vlajky */
+    height: 15px; /* Výška vlajky */
+    object-fit: cover; /* Zabrání deformaci vlajky */
+  }
+  
+
+  
