@@ -22,6 +22,11 @@ const DisciplineLive = () => {
   const [relatedEvents, setRelatedEvents] = useState([]);
   const [boldRows, setBoldRows] = useState([]);
 
+  const omniumDisciplines = ["Omnium ME", "Omnium WE", "Omnium MU19", "Omnium WU19", "Omnium MJ", "Omnium WJ"];
+  const madisonDisciplines = ["Madison ME", "Madison WE", "Madison MJ", "Madison WJ"];
+  const isOmnium = omniumDisciplines.includes(displayName);
+  const isMadison = madisonDisciplines.includes(sheetName);
+
   // ✅ Načtení eventu a disciplíny
   useEffect(() => {
     const event = eventList.find((e) => e.file.replace('.json', '') === eventName);
@@ -55,10 +60,6 @@ const DisciplineLive = () => {
   // ✅ Načtení dat z Google Sheets
   useEffect(() => {
     if (!googleSheetsId || !sheetName || rowRange[0] === 0 || selectedColumns.length === 0) return;
-    console.log("📊 Google Sheets ID:", googleSheetsId);
-    console.log("📊 Sheet name:", sheetName);
-    console.log("📊 Row range:", rowRange);
-    console.log("📊 Selected columns:", selectedColumns);
 
     const fetchDataFromSheets = async () => {
       const range = `${sheetName}!A${rowRange[0]}:Z${rowRange[1]}`;

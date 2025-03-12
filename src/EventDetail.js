@@ -33,23 +33,19 @@ const EventDetail = () => {
 
   return (
     <div className="container">
-      {/* 🔙 Tlačítko zpět */}
       <button onClick={() => navigate("/")} className="back-button">
         ⬅️ Back to Events
       </button>
 
-      {/* 🏆 Název eventu */}
       <h1 className="event-title">{eventData.name}</h1>
       <p className="event-date">{eventData.date}</p>
 
-      {/* 📄 Event Schedule */}
       {eventData.schedule && (
         <a href={eventData.schedule} target="_blank" rel="noopener noreferrer" className="event-schedule">
           📄 Event Schedule
         </a>
       )}
 
-      {/* 📌 Seznam dnů */}
       {eventData.disciplines.map((day, dayIndex) => (
         <div key={dayIndex} className="event-day">
           <h3
@@ -59,7 +55,6 @@ const EventDetail = () => {
             Day {day.day} - {day.date}
           </h3>
 
-          {/* 📌 Seznam disciplín */}
           <div id={`day-${dayIndex}`} className="hidden disciplines-list">
             {day.events
               .filter((event) => !event.hidden)
@@ -71,7 +66,6 @@ const EventDetail = () => {
                   >
                     {event.listDisplayName || event.name}
                   </span>
-
                   <div className="discipline-links">
                     {event.startList && (
                       <a href={event.startList} target="_blank" rel="noopener noreferrer" className="discipline-link">
