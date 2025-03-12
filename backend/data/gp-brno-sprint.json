@@ -1,0 +1,248 @@
+{
+    "name": "GP Brno Sprint",
+    "date": "06/2024",
+    "googleSheetsId": "1qgTszNYEMuZrHI1ENU1G0GUR0oLoY-epbXbe5bw9LOU",
+    "schedule": "https://drive.google.com/example.pdf",
+    "pdfs": [
+      { "name": "RESULTS PDF", "url": "https://drive.google.com/startlist.pdf" }
+      
+    ],
+    "disciplines": [
+     
+ {
+        "day": 1,
+        "date": "06/06/2024",
+        "events": [
+          
+ { "name": "Sprint ME Qualification", 
+ "displayName": "Sprint ME Qualification",
+"listDisplayName": "Sprint ME",
+"sheetName": "Sprint ME",
+"rowRange": [8, 34],   
+"boldRows": [8] ,
+"columns": ["A", "B", "D", "E", "F", "I"],
+                      
+"startList": "UR”L na složku s PDF",
+"results": "URL NA RESULTS PDF",
+                       
+"relatedEvents": ["Sprint ME Qualification", "Sprint ME 1/16 Finals", "Sprint ME 1/8 Finals", "Sprint ME 1/4 Finals", "Sprint ME Semifinals", "Sprint ME Finals"],
+"hidden": false},
+
+
+ 	{ "name": "Sprint ME 1/16 Finals", 
+ "displayName": "Sprint ME 1/16 Finals",
+          	"sheetName": "Sprint ME",
+          	"rowRange": [40, 69],   
+	"boldRows": [40] ,
+          	"columns": ["A", "B", "D", "E", "F", "I"],
+          	"startList": "URL na PDF",
+          	"results": "URL na PDF",
+
+"relatedEvents": ["Sprint ME Qualification", "Sprint ME 1/16 Finals", "Sprint ME 1/8 Finals", "Sprint ME 1/4 Finals", "Sprint ME Semifinals", "Sprint ME Finals"],
+            "hidden": true },
+
+
+{ "name": "Sprint ME 1/8 Finals", 
+"displayName": "Sprint ME 1/8 Finals",
+         	 "sheetName": "Sprint ME",
+         	 "rowRange": [76, 99],   
+	"boldRows": [76] ,
+         	 "columns": ["A", "B", "D", "E", "F", "I"],
+         	 "startList": "URL na PDF",
+         	 "results": "URL na PDF",
+        
+"relatedEvents": ["Sprint ME Qualification", "Sprint ME 1/16 Finals", "Sprint ME 1/8 Finals", "Sprint ME 1/4 Finals", "Sprint ME Semifinals", "Sprint ME Finals"],
+            "hidden": true},
+
+
+{ "name": "Sprint ME 1/4 Finals", 
+"displayName": "Sprint ME 1/4 Finals",
+         	 "sheetName": "Sprint ME",
+         	 "rowRange": [105, 116],  
+"boldRows": [105]  ,
+          	"columns": ["A", "B", "D", "E", "F", "I", "J", "K", "L", "M", "N"],
+          	"startList": "URL na PDF",
+          	"results": "URL na PDF",
+        
+"relatedEvents": ["Sprint ME Qualification", "Sprint ME 1/16 Finals", "Sprint ME 1/8 Finals", "Sprint ME 1/4 Finals", "Sprint ME Semifinals", "Sprint ME Finals"],
+            "hidden": true},
+
+
+{ "name": "Sprint ME Semifinals", 
+"displayName": "Sprint ME Semifinals",
+          	"sheetName": "Sprint ME",
+          	"rowRange": [122, 127],   
+	"boldRows": [122] ,
+          	"columns": ["A", "B", "D", "E", "F", "I", "J", "K", "L", "M", "N"],
+          	"startList": "URL na PDF",
+          	"results": "URL na PDF",
+        
+"relatedEvents": ["Sprint ME Qualification", "Sprint ME 1/16 Finals", "Sprint ME 1/8 Finals", "Sprint ME 1/4 Finals", "Sprint ME Semifinals", "Sprint ME Finals"],
+            "hidden": true},
+
+
+{ "name": "Sprint ME Finals", 
+"displayName": "Sprint ME Finals",
+          	"sheetName": "Sprint ME",
+          	"rowRange": [132, 141],   
+	"boldRows": [132, 133, 138, 139] ,
+          	"columns": ["A", "B", "D", "E", "F", "I", "J", "K", "L", "M", "N"],
+          	"startList": "URL na PDF",
+          	"results": "URL na PDF",
+        
+"relatedEvents": ["Sprint ME Qualification", "Sprint ME 1/16 Finals", "Sprint ME 1/8 Finals", "Sprint ME 1/4 Finals", "Sprint ME Semifinals", "Sprint ME Finals"],
+            "hidden": true
+          },
+
+
+{ "name": "Keirin WE Round 1", 
+"displayName": "Keirin WE Round 1",
+"listDisplayName": "Keirin WE",
+"sheetName": "Keirin WE",
+"rowRange": [48, 79],
+"boldRows": [48, 49, 60, 61, 72, 73],    
+"columns": ["A", "B", "D", "E", "F", "I"],
+"startList": "URL na PDF",
+ "results": "URL na PDF",
+        
+"relatedEvents": ["Keirin WE Round 1", "Keirin WE Repechages", "Keirin WE Semifinals", "Keirin WE Finals"],
+"hidden": false},
+
+{ "name": "Keirin WE Repechages", 
+"displayName": "Keirin Repechages",
+          	"sheetName": "Keirin WE",
+          	"rowRange": [84, 104],  
+"boldRows": [84, 85, 97, 98],  
+          	"columns": ["A", "B", "D", "E", "F", "I"],
+          	"startList": "URL na PDF",
+          	"results": "URL na PDF",
+
+"relatedEvents": ["Keirin WE Round 1", "Keirin WE Repechages", "Keirin WE Semifinals", "Keirin WE Finals"],
+            "hidden": true},
+
+{ "name": "Keirin WE Semifinals", 
+"displayName": "Keirin WE Semifinals",
+          	"sheetName": "Keirin WE",
+          	"rowRange": [109, 126],   
+	"boldRows": [109, 110, 119, 120], 
+          	"columns": ["A", "B", "D", "E", "F", "I"],
+          	"startList": "URL na PDF",
+          	"results": "URL na PDF",
+        
+"relatedEvents": ["Keirin WE Round 1", "Keirin WE Repechages", "Keirin WE Semifinals", "Keirin WE Finals"],
+            "hidden": true},
+
+{ "name": "Keirin WE Finals",
+"displayName": "Keirin WE Finals", 
+          	"sheetName": "Keirin WE",
+          	"rowRange": [130, 147],   
+	"boldRows": [130, 131, 140, 141] ,
+          	"columns": ["A", "B", "D", "E", "F", "I"],
+          	"startList": "URL na PDF",
+          	"results": "URL na PDF",
+        
+"relatedEvents": ["Keirin WE Round 1", "Keirin WE Repechages", "Keirin WE Semifinals", "Keirin WE Finals"],
+ 	"hidden": true
+},
+
+
+{ "name": "Omnium ME", 
+"displayName": "Omnium ME",
+"listDisplayName": "Omnium ME",
+"sheetName": "Omnium ME",
+"rowRange": [7, 48],  
+"boldRows": [7],  
+"columns": ["A", "B", "D", "E", "F", "I", "J", "K", "L", "M", "N", "O", "P"],
+"startList": "URL NA STARTLIST PDF",
+"results": "URL NA RESULTS PDF",
+           
+"relatedEvents": ["Omnium ME", "Omnium ME - Scratch", "Omnium ME - Tempo Race", "Omnium ME - Elimination", "Omnium ME - Points Race"],
+"hidden": false },
+
+ 	{ "name": "Omnium ME - Scratch", 
+	"displayName": "Omnium ME Scratch",
+          	"sheetName": "Omnium ME",
+            "rowRange": [141, 182],   
+	"boldRows": [141], 
+            "columns": ["A", "B", "D", "E", "F", "J"],
+            "startList": "URL NA STARTLIST PDF",
+            "results": "URL NA RESULTS PDF",
+           
+"relatedEvents": ["Omnium ME", "Omnium ME - Scratch", "Omnium ME - Tempo Race", "Omnium ME - Elimination", "Omnium ME - Points Race"],
+            "hidden": true},
+          
+    	{ "name": "Omnium ME - Tempo Race",
+"displayName": "Omnium ME - Tempo Race", 
+          	"sheetName": "Omnium ME",
+            "rowRange": [196, 237],   
+	"boldRows": [196] ,
+            "columns": ["A", "B", "D", "E", "F", "L"],
+            "startList": "URL NA STARTLIST PDF",
+            "results": "URL NA RESULTS PDF",
+           
+"relatedEvents": ["Omnium ME", "Omnium ME - Scratch", "Omnium ME - Tempo Race", "Omnium ME - Elimination", "Omnium ME - Points Race"],
+            "hidden": true },
+
+  	{ "name": "Omnium ME - Elimination", 
+	"displayName": "Omnium ME - Elimination",
+          	"sheetName": "Omnium ME",
+            "rowRange": [241, 282],   
+	"boldRows": [241] ,
+            "columns": ["A", "B", "D", "E", "F", "N"],
+            "startList": "URL NA STARTLIST PDF",
+            "results": "URL NA RESULTS PDF",
+           
+"relatedEvents": ["Omnium ME", "Omnium ME - Scratch", "Omnium ME - Tempo Race", "Omnium ME - Elimination", "Omnium ME - Points Race"],
+"hidden": true},
+
+ 	{ "name": "Omnium ME - Points Race",
+"displayName": "Omnium ME - Points Race" ,
+         	"sheetName": "Omnium ME",
+            "rowRange": [7, 48],  
+"boldRows": [7] , 
+            "columns": ["A", "B", "D", "E", "F", "P"],
+            "startList": "URL NA STARTLIST PDF",
+            "results": "URL NA RESULTS PDF",
+           
+"relatedEvents": ["Omnium ME", "Omnium ME - Scratch", "Omnium ME - Tempo Race", "Omnium ME - Elimination", "Omnium ME - Points Race"],
+            "hidden": true},
+
+
+{ "name": "Madison WE", 
+"displayName": "Madison WE",
+"listDisplayName": "Madison WE",
+"sheetName": "Madison WE",
+"rowRange": [7,31],   
+"boldRows": [7] ,
+"columns": ["A", "B", "E", "F", "G", "J"],
+"startList": "URL na PDF",
+"results": "URL na PDF",
+"hidden": false}
+
+
+        ]
+      },
+ 
+
+
+ {
+        "day": 2,
+        "date": "Datum druhého dne",
+        "events": [
+
+
+
+      ]
+ }
+
+
+
+
+
+
+
+    ]
+  }
+ 
+
+
