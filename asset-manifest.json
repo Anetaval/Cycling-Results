@@ -1,13 +1,13 @@
 {
   "files": {
     "main.css": "/Cycling-Results/static/css/main.3c7325b3.css",
-    "main.js": "/Cycling-Results/static/js/main.e0f2ec17.js",
+    "main.js": "/Cycling-Results/static/js/main.5ec680be.js",
     "index.html": "/Cycling-Results/index.html",
     "main.3c7325b3.css.map": "/Cycling-Results/static/css/main.3c7325b3.css.map",
-    "main.e0f2ec17.js.map": "/Cycling-Results/static/js/main.e0f2ec17.js.map"
+    "main.5ec680be.js.map": "/Cycling-Results/static/js/main.5ec680be.js.map"
   },
   "entrypoints": [
     "static/css/main.3c7325b3.css",
-    "static/js/main.e0f2ec17.js"
+    "static/js/main.5ec680be.js"
   ]
 }
